@@ -22,22 +22,15 @@ It allows receptionists to:
 🔹Tech Stack🔹
 Frontend:
 React
-
 Axios
-
 Speech Recognition API
-
 Tailwind CSS
 
 Backend:
 Node.js
-
 Express
-
 Mongoose
-
 JWT
-
 bcrypt
 
 Database:
