@@ -20,6 +20,7 @@ It allows receptionists to:
 🌟 User-friendly UI with React + Tailwind CSS
 
 🔹Tech Stack🔹
+
 Frontend:
 React
 Axios
