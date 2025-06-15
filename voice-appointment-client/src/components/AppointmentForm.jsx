@@ -8,26 +8,33 @@ function AppointmentForm({ token }) {
   const [confirmation, setConfirmation] = useState(null);
 
   // Reusable voice input function
-  const handleVoice = (field) => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const handleVoice = () => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (!SpeechRecognition) {
-      alert('Speech recognition not supported');
-      return;
-    }
+  if (!SpeechRecognition) {
+    alert('Speech recognition not supported');
+    return;
+  }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.start();
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'en-US';
+  recognition.start();
 
-    recognition.onresult = (e) => {
-      const text = e.results[0][0].transcript.trim();
+  recognition.onresult = (e) => {
+    const text = e.results[0][0].transcript.trim().toLowerCase();
 
-      if (field === 'patientName') setPatientName(text);
-      if (field === 'symptom') setSymptom(text);
-      if (field === 'doctor') setDoctor(text);
-    };
+    // Split or extract info
+    // This assumes format: "patient [name], symptoms [symptom], preferred doctor [doctor]"
+    const patientMatch = text.match(/patient ([\w ]+)/);
+    const symptomsMatch = text.match(/symptom(s)? ([\w ]+)/);
+    const doctorMatch = text.match(/doctor ([\w ]+)/);
+
+    if (patientMatch) setPatientName(patientMatch[1]?.trim()); 
+    if (symptomsMatch) setSymptom(symptomsMatch[2]?.trim()); 
+    if (doctorMatch) setDoctor(doctorMatch[1]?.trim()); 
   };
+};
+
 
  const submit = async (e) => {
   e.preventDefault();
@@ -55,6 +62,12 @@ function AppointmentForm({ token }) {
     <div className="max-w-md p-6 bg-gray-100 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Book Appointment</h2>
 
+      <button
+      type="button"
+      onClick={handleVoice}
+      className="bg-blue-500 text-gray-50 px-3 py-2 rounded-md mb-4">
+      Fill by Voice
+      </button>
       <form onSubmit={submit} className="flex flex-col gap-4">
         <div>
           <label className="block font-semibold">Patient Name</label>
@@ -65,12 +78,6 @@ function AppointmentForm({ token }) {
               onChange={(e) => setPatientName(e.target.value)}
               placeholder="Patient Name"
             />
-            <button
-              type="button"
-              onClick={() => handleVoice('patientName')}
-              className="bg-blue-500 text-gray-50 px-3 py-2 rounded-md ml-2">
-              Voice
-            </button>
           </div>
         </div>
 
@@ -83,12 +90,6 @@ function AppointmentForm({ token }) {
               onChange={(e) => setSymptom(e.target.value)}
               placeholder="Symptoms"
             />
-            <button
-              type="button"
-              onClick={() => handleVoice('symptom')}
-              className="bg-blue-500 text-gray-50 px-3 py-2 rounded-md ml-2">
-              Voice
-            </button>
           </div>
         </div>
 
@@ -101,12 +102,6 @@ function AppointmentForm({ token }) {
               onChange={(e) => setDoctor(e.target.value)}
               placeholder="Doctor Name"
             />
-            <button
-              type="button"
-              onClick={() => handleVoice('doctor')}
-              className="bg-blue-500 text-gray-50 px-3 py-2 rounded-md ml-2">
-              Voice
-            </button>
           </div>
         </div>
 
