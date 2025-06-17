@@ -82,19 +82,19 @@ function AppointmentForm({ token }) {
   };
 
   return (
-    <div className="flex flex-wrap p-0 m-0 justify-center min-h-screen bg-gray-950">
+    <div className="flex flex-wrap p-0 m-0 justify-center min-h-screen bg-orange-100">
       <div className="w-full mb-15">
-        <p className="text-8xl text-blue-50 mt-5 mb-0  text-center font-semibold baymax-fade-down">
+        <p className="text-8xl text-gray-950 mt-5 mb-0  text-center font-semibold baymax-fade-down">
           Receptionist's Dashboard
         </p>
-        <p className="text-center text-white font-extralight text-lg mt-5 baymax-fade-down">
+        <p className="text-center text-neutral-800 font-mono text-lg mt-5 baymax-fade-down">
           {/* Give your command as : <b>Patient name</b> <i>patient_name</i>, <b>Symptoms</b> <i>symptoms</i>, <b>Preferred Doctor</b> <i>doctor_name</i> */}
           Give your command as : Patient name patient_name, Symptoms symptom(s), Preferred Doctor doctor_name. 
         </p>
       </div>
 
-      <div className="bg-gray-950 border-1 border-gray-400 opacity-10 top-40 p-6 rounded-2xl shadow-gray-600/75 shadow-md max-w-md w-full absolute mt-20 baymax-fade-up">
-        <h2 className="text-3xl text-blue-50 text-center font-semibold mb-3">
+      <div className="bg-gray-50 border-1 border-amber-100/50 opacity-10 top-40 p-6 rounded-4xl shadow-gray-400/75 shadow-xl max-w-md w-full absolute mt-20 baymax-fade-up">
+        <h2 className="text-3xl text-gray-900 text-center font-semibold mb-3">
           Book Appointment
         </h2> 
 
@@ -102,27 +102,27 @@ function AppointmentForm({ token }) {
           type="button"
           disabled={listening}
           onClick={handleVoice}
-          className="w-full p-2 my-4 bg-blue-500 disabled:bg-gray-400 text-gray-50 font-semibold rounded-md">
+          className="w-full p-2 my-4 bg-gray-900 disabled:bg-gray-400 text-gray-50 font-semibold rounded-md">
           {listening ? " Listening…" : "Fill by Voice"}
         </button>
 
         <form onSubmit={submit} className="flex flex-col gap-4 mt-3">
           <input
-            className="w-full p-2 border rounded-md border-white text-white"
+            className="w-full p-2 border rounded-md border-black text-black"
             value={patientName}
             onChange={(e) => setPatientName(e.target.value)}
             placeholder="Patient Name"
           />
 
           <input
-            className="w-full p-2 border rounded-md border-white text-white"
+            className="w-full p-2 border rounded-md border-black text-black"
             value={symptoms}
             onChange={(e) => setSymptoms(e.target.value)}
             placeholder="Symptoms"
           />
 
           <input
-            className="w-full p-2 border rounded-md border-white text-white"
+            className="w-full p-2 border rounded-md border-black text-black"
             value={preferredDoctor}
             onChange={(e) => setPreferredDoctor(e.target.value)}
             placeholder="Doctor Name"
@@ -131,7 +131,7 @@ function AppointmentForm({ token }) {
           <button
             disabled={listening}
             type="submit"
-            className="w-full p-2 mt-3 bg-green-500 disabled:bg-gray-400 text-gray-50 font-semibold rounded-md">
+            className="w-full p-2 mt-3 bg-gray-900 disabled:bg-gray-400 text-gray-50 font-semibold rounded-md">
             Book Appointment
           </button>
         </form>

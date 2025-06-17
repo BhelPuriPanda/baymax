@@ -25,16 +25,16 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="flex flex-wrap p-3 m-0 justify-center min-h-screen bg-linear-to-b from-green-400 to-green-800">
+    <div className="flex flex-wrap p-3 m-0 justify-center min-h-screen bg-linear-to-b from-neutral-200 to-neutral-300">
       <div className="w-full h-0 mb-25">
-        <h1 className="text-9xl text-amber-50 text-center font-semibold my-8 baymax-fade-down">BAYMAX</h1>
+        <h1 className="text-9xl text-gray-950 text-center font-semibold my-8 baymax-fade-down">BAYMAX</h1>
         <h1 className="text-5xl text-center font-medium my-2 baymax-fade-down">Manages your Patients' Appointments Better&Faster</h1>
         <h1 className="text-center font-light text-lg my-2 baymax-fade-down">By Team Error404</h1>
       </div>
       <div>
       <form
         onSubmit={handleLogin}
-        className="bg-gray-50 p-6 mt-30 rounded-2xl shadow-md w-full max-w-md baymax-fade">
+        className="bg-gray-50 p-6 mt-30 rounded-3xl shadow-md w-full max-w-md baymax-fade">
         <h2 className="text-3xl text-center font-semibold mb-6 baymax-fade-up">Receptionist Login</h2>
 
         {error && <div className="bg-red-100 p-3 rounded-md text-red-500 mb-4">
@@ -61,7 +61,7 @@ function Login({ onLogin }) {
 
         <button
           disabled={loading}
-          className="w-full p-2 mt-5 bg-green-600 text-gray-50 font-semibold rounded-md disabled:bg-gray-400 baymax-fade-up">
+          className="w-full p-2 mt-5 bg-gray-900 text-gray-50 font-semibold rounded-lg disabled:bg-gray-700 baymax-fade-up">
           {loading ? "Logging in…" : "Login"}
         </button>
       </form>
